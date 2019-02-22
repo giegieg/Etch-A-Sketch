@@ -26,31 +26,31 @@ divMain.style.flexDirection = "column";
 
 
 function createBoxes(n) {
-  for(a=0; a<n; a++) {
+  for(a=0; a<n; a++) {                    //row, bigger boxes
     box = document.createElement("div");
     box.style.height = "100%";
     box.style.width = "100%";
     box.style.display = "flex";
     box.style.flexDirection = "row"; 
 
-    for(b=0; b<n; b++) {
+    for(b=0; b<n; b++) {                //column, smaller boxes
       tinyBox = document.createElement("div");
       tinyBox.style.height = "100%";
       tinyBox.style.width = "100%";
       box.appendChild(tinyBox);
-      tinyBox.classList.add("squares");
+      tinyBox.classList.add("squares"); //to link tinybox(all boxes) to tinyBox2 node list
     }
   divMain.appendChild(box);
   }
 }
 
-function toClassSquares() {
+function toClassSquares() {             
   tinyBox2 = document.querySelectorAll(".squares");
 }
 
 function hover() {
 
-  tinyBox2.forEach(maws => maws.addEventListener("mouseover", (e) => {
+  tinyBox2.forEach(member => member.addEventListener("mouseover", (e) => {
     if (colorMode == "grayScale") {
       switch (e.target.style.backgroundColor) {
       case "":
@@ -84,10 +84,10 @@ function hover() {
       e.target.style.backgroundColor = grayLvl10;
       break;
       case grayLvl10:
-      e.target.style.backgroundColor = grayLvl10;
+      e.target.style.backgroundColor = grayLvl10;   //stays at the darkest hue
       break;
       default:
-      e.target.style.backgroundColor = grayLvl1;
+      e.target.style.backgroundColor = grayLvl1;    //coloured to gray
       break;
       }
     }
@@ -114,7 +114,7 @@ clearButton.addEventListener("click", function() {
       divMain.removeChild(divMain.childNodes[0]);
     }
   }
-  if (n==0 || n==null) {
+  if (n==0 || n==null) {    //0, to start again. null, when coming from createNewButton (null input)
     createBoxes(40);
   }
   else {
